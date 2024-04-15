@@ -1,130 +1,267 @@
-/* Reset default browser styles */
-body, h1, h2, p, ul, li, button {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Chat Application</title>
+</head>
+
+<style type=”text/css”>
+
+	@font-face{ 
+
+		Font-family: headFont:
+		Src: url(ui/fonts/Summer-Vibes-OTF.otf);
+	}
+	#wrapper{
+
+		Max-width:900px;
+		Min-height: 500px;
+	//display:flex;
+	Margin: auto;
+	Color: white;
+	Font-size: 13px;
+
+
+	}
+
+	#left_pannel{
+	
+		Min-height: 400px
+		Background-color: #27344b;
+		Flex: 1;
+		Text-align: center;
+
+	}
+
+	#profile_img{
+		
+		Width: 50%;
+		Border: solid thin white;
+		Border-radius: 50%;
+		Margin: 10px;
+
+	}
+
+	#left_pannel label{
+		
+		Width: 100%;
+		Height: 10px;
+		Display: block;
+		Background-color: #4045b6;
+		Border-bottom: solid thin #ffffff55;
+		Cursor: pointer;
+		Padding: 5px;
+		Transition: all 1s ease; 
+	}
+
+
+	#left_pannel label:hover{
+		
+		Background-color: #778593;
+	}
+
+	#left_pannel label img{
+		Float: right;
+		Width: 25px;
+			}
+
+
+	#right_pannel{
+	
+		Min-height: 400px
+		Flex: 4;
+		Text-align: center;
+
+	}
+
+	#header{
+
+		Background-color: #485b6c;
+		Height: 70px;
+Header-size: 40px;
+Text-align: center; 
+Font-family: headFont;
+
+	}
+	#inner_left_pannel{
+	
+		Background-color: #383e48;
+		Flex: 1;
+		Min-height: 430px;
+		transition: all 2s ease;
+	}
+
+	#inner_right_pannel{
+	
+		Background-color: #f2f7f8;
+		Flex: 2;
+		Min-height: 1
+		Transition: all 2s ease;
+	}
+
+	(maybe delete) #radio_chat: checked ~ #inner_right_pannel{
+		
+		Flex: 0;
+	}
+
+
+#radio_contacts: checked ~ #inner_right_pannel{
+		
+		Flex: 0;
+	}
+
+	#radio_settings: checked ~ #inner_right_pannel{
+		
+		Flex: 0;
+	}
+
+	/* Chat message styles */
+.chat-message {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
-/* Center align the app */
-.app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.chat-message.sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
 }
 
-/* Style the join form */
-.form {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* User input area styles */
+.user-input {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.form h2 {
-  margin-bottom: 10px;
+.user-input textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
 }
 
-.form-input {
-  margin-bottom: 15px;
+/* Sidebar styles */
+.sidebar {
+    background-color: #27344b;
+    color: #fff;
+    padding: 20px;
 }
 
-.form-input label {
-  display: block;
-  margin-bottom: 5px;
+.sidebar h2 {
+    margin-top: 0;
 }
 
-.form-input input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.form-input button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.sidebar li {
+    padding: 10px 0;
+    cursor: pointer;
 }
 
-.form-input button:hover {
-  background-color: #0056b3;
+.sidebar li:hover {
+    background-color: #404f6f;
 }
 
-/* Style the chat screen */
-.chat-screen {
-  display: none;
-  flex-direction: column;
-  align-items: center;
+/* Chat header styles */
+.chat-header {
+    background-color: #485b6c;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+/* Profile image styles */
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
-.logo {
-  font-size: 24px;
+/* Settings form styles */
+.settings-form {
+    margin-top: 20px;
 }
 
-.messages {
-  width: 100%;
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
+.settings-form label {
+    display: block;
+    margin-bottom: 10px;
 }
 
-.message {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
+.settings-form input[type="text"],
+.settings-form input[type="email"] {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.my-message {
-  background-color: #e5f4ff;
+.settings-form button {
+    background-color: #485b6c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.other-message {
-  background-color: #f2f2f2;
+.settings-form button:hover {
+    background-color: #27344b;
 }
 
-.message .name {
-  font-weight: bold;
-}
 
-.typebox {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
 
-.typebox input[type="text"] {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+</style>
+<body>
 
-.typebox button {
-  padding: 8px 16px;
-  margin-left: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+	<div id=”wrapper”>
 
-.typebox button:hover {
-  background-color: #0056b3;
-}
+		<div id=”left_pannel”>
 
+			<div style=”padding: 10px;”> 
+			<img id=”profile_img”  src=”ui/images/”>
+			<br> 
+			Michael Stansfield
+			<br>
+			<span style=”font-size: 12px;opacity: 0.5;”>mstansfield@arcadia.edu</span>
+			
+			<br>
+			<br>
+				<br>
+			<div>
+			<label id=”label_chat”  for=”radio_chat”>Chat<img src=”ui/icons/chat.png></label>
+			<label id=”label_contacts” for=”radio_contacts”>Contacts<img src=”ui/icons/contacts.png></label>
+				<label id=”label_settings” for=”radio_settings”>Settings<img src=”ui/icons/settings.png></label>
+				</div>
+
+			</div>
+</div>
+		<div id=”right_pannel”>
+			<div id=”header”></div>
+			<div id=”container” style=”display: flex;></div>
+
+			<div id=”inner_left_pannel”>
+
+</div>
+
+			<input type=”radio”  id=”radio_chat”  name=”myradio” style=”display: none;”>
+					<input type=”radio”  id=”radio_contacts”  name=”myradio” style=”display: none;”>
+					<input type=”radio”  id=”radio_settings”  name=”myradio” style=”display: none;”>
+
+
+								<div id=”inner_right_pannel”>
+
+</div>
+</div>
+
+	</div>
+</body>
+</html>
