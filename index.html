@@ -1,56 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<html>
+<head>
     <title>Chat Application</title>
-    <link rel="stylesheet" href="style.css" /> 
-  </head>
-  <body>
-    <div class="app">
-      <div class="screen join-screen active">
-        <div class="form">
-          <h2>Join Chatroom</h2>
-          <div class="form-input">
-            <label>Username</label>
-            <input type="text" id="username">
-          </div>
-          <div class="form-input">
-            <button id="join-user">Join</button>
-          </div>
-        </div>
-      </div>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
 
-      <div class="screen chat-screen">
-        <div class="header">
-          <div class="logo">Chatroom</div>
-          <button id="exit-chat">Exit</button>
-        </div>
+<div id="wrapper">
 
-        <div class="messages">
-          <div class="message my-message">
+    <div id="left_pannel">
+
+        <div style="padding: 10px;"> 
+            <img id="profile_img" src="ui/images/placeholder.jpg">
+            <br> 
+            Michael Stansfield
+            <br>
+            <span style="font-size: 12px; opacity: 0.5;">mstansfield@arcadia.edu</span>
+            
+            <br>
+            <br>
+            <br>
             <div>
-              <div class="name">You</div>
-              <div class="text">Hi</div>
+                <label id="label_chat" for="radio_chat">Chat<img src="ui/icons/chat.png"></label>
+                <label id="label_contacts" for="radio_contacts">Contacts<img src="ui/icons/contacts.png"></label>
+                <label id="label_settings" for="radio_settings">Settings<img src="ui/icons/settings.png"></label>
             </div>
-          </div>
 
-          <div class="message other-message">
-            <div class="update">
-              Abc has joined the conversation
-            </div>
-            <div>
-              <div class="name">Abc</div>
-              <div class="text">Hi</div>
-            </div>
-          </div>
         </div>
-
-        <div class="typebox">
-          <input type="text" id="message-input">
-          <button id="send-message">Send</button>
-        </div>
-      </div>
     </div>
-  </body>
+
+    <div id="right_pannel">
+        <div id="header"></div>
+        <div id="container" style="display: flex;"></div>
+
+        <div id="inner_left_pannel"></div>
+
+        <input type="radio" id="radio_chat" name="myradio" style="display: none;">
+        <input type="radio" id="radio_contacts" name="myradio" style="display: none;">
+        <input type="radio" id="radio_settings" name="myradio" style="display: none;">
+
+        <div id="inner_right_pannel"></div>
+    </div>
+
+</div>
+</body>
 </html>
 
+
+<script type="text/javascript">
+
+var  CURRENT_CHAT_USER = "";
+
+function get_chats(e) {
+
+    get_data({}, "chats");
+}
+    
+function start_chat(e){
+
+    var userid = e.target.getAttribute("userid");
+    if(e.target.id == ""){
+        userid = e.target.parentNode.getAttribute("userid");
+    } 
+    CURRENT_CHAT_USER = userid;
+    
+    var radio_chat = _("radio_chat");
+    radio_chat.checked = true;
+    get_data({userid:CURRENT_CHAT_USER}, "chats");
+}
+    
+</script>
