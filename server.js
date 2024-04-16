@@ -1,4 +1,5 @@
 // server.js
+const path = require('path');
 const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
@@ -10,20 +11,44 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+app.use(express.json());
+
+app.use(express.static('public'));  
+
+
 app.get('/', (req, res) => {
   res.send('Chat app backend is running');
 });
 
+app.get('/chat', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'chat.html'));  // Adjust the path according to your directory structure
+});
 
 io.on('connection', socket => {
-    socket.on('chatMessage', async (msg) => {
-        try {
-            await Message.addMessage(msg);
-            io.to(msg.room).emit('message', { username: msg.username, text: msg.text });
-        } catch (error) {
-            console.error('Error saving message:', error);
-        }
-    });
+  console.log('New user connected');
+
+  // Join room
+  socket.on('joinRoom', ({ room, username }) => {
+      socket.join(room);
+      socket.to(room).emit('message', `${username} has joined the room`);
+  });
+
+  // Handle chat messages
+  socket.on('chatMessage', async ({ room, username, text }) => {
+      try {
+          const message = { room, username, text };
+          await Message.addMessage(message);
+          io.to(room).emit('message', { username, text });
+      } catch (error) {
+          console.error('Error saving message:', error);
+      }
+  });
+
+  // Handle disconnect
+  socket.on('disconnect', () => {
+      console.log('User disconnected');
+      io.emit('message', 'A user has disconnected');
+  });
 });
 
 app.get('/messages/:room', async (req, res) => {
