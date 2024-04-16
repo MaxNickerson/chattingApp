@@ -45,3 +45,28 @@
 </div>
 </body>
 </html>
+
+
+<script type="text/javascript">
+
+var  CURRENT_CHAT_USER = "";
+
+function get_chats(e) {
+
+    get_data({}, "chats");
+}
+    
+function start_chat(e){
+
+    var userid = e.target.getAttribute("userid");
+    if(e.target.id == ""){
+        userid = e.target.parentNode.getAttribute("userid");
+    } 
+    CURRENT_CHAT_USER = userid;
+    
+    var radio_chat = _("radio_chat");
+    radio_chat.checked = true;
+    get_data({userid:CURRENT_CHAT_USER}, "chats");
+}
+    
+</script>
