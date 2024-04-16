@@ -1,41 +1,39 @@
-// const express = require('express');
-// const http = require('http');
-// const socketio = require('socket.io');
-// // local host
-// const app = express();
-// const server = http.createServer(app);
-
-// const io = socketio(server);
-
-// app.use(express.json());
-
-// // console.log("test")
-
-// app.get('/', (req, res) => {
-//     console.log('Received request on /');
-//     res.send('Chat app backend is running');
-    
-// });
-
-// io.on('connection', socket => {
-//     console.log('New WebSocket connection');
-
-//     socket.on('disconnect', () => {
-//         console.log('User has disconnected');
-//     });
-// });
+// server.js
+const express = require('express');
+const http = require('http');
+const socketio = require('socket.io');
+const { db } = require('./config/firebaseConfig');
+const Message = require('./models/Message');
 
 
-// const PORT = process.env.PORT || 5000;
-// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
-
-const admin = require('firebase-admin');
-const serviceAccount = require('c:/Users/banan/Documents/GitHub/database manager/database-chatting-app-dc0895893908.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+app.get('/', (req, res) => {
+  res.send('Chat app backend is running');
 });
 
-const db = admin.firestore();
 
+io.on('connection', socket => {
+    socket.on('chatMessage', async (msg) => {
+        try {
+            await Message.addMessage(msg);
+            io.to(msg.room).emit('message', { username: msg.username, text: msg.text });
+        } catch (error) {
+            console.error('Error saving message:', error);
+        }
+    });
+});
+
+app.get('/messages/:room', async (req, res) => {
+    try {
+        const messages = await Message.getMessagesByRoom(req.params.room);
+        res.json(messages);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
