@@ -1,2 +1,2 @@
 # chattingApp
-chatting app
+cool stuff stuff
