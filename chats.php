@@ -1,7 +1,6 @@
 <?php
 
-  $mydata = 
-  'chats go here';
+  $mydata = $DATA_OBJ->find->userid;
 
   //$result = $result[0];
   $info->message = $mydata;
