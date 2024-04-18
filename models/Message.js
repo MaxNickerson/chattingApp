@@ -1,6 +1,4 @@
-// models/Message.js
-const { db } = require('../config/firebaseConfig');
-
+const { db, admin } = require('../config/firebaseConfig'); // Import admin from your Firebase config if it exports admin
 
 class Message {
     static collection = db.collection('messages');
@@ -10,7 +8,7 @@ class Message {
             room,
             username,
             text,
-            timestamp: admin.firestore.FieldValue.serverTimestamp()
+            timestamp: admin.firestore.FieldValue.serverTimestamp() // Now admin should be defined
         });
     }
 
