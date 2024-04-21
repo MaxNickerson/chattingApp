@@ -2,71 +2,35 @@
 <html>
 <head>
     <title>Chat Application</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-<div id="wrapper">
-
-    <div id="left_pannel">
-
-        <div style="padding: 10px;"> 
-            <img id="profile_img" src="ui/images/placeholder.jpg">
-            <br> 
-            Michael Stansfield
-            <br>
-            <span style="font-size: 12px; opacity: 0.5;">mstansfield@arcadia.edu</span>
-            
-            <br>
-            <br>
-            <br>
-            <div>
-                <label id="label_chat" for="radio_chat">Chat<img src="ui/icons/chat.png"></label>
-                <label id="label_contacts" for="radio_contacts">Contacts<img src="ui/icons/contacts.png"></label>
-                <label id="label_settings" for="radio_settings">Settings<img src="ui/icons/settings.png"></label>
+    <div id="wrapper">
+        <div id="left_pannel">
+            <div style="padding: 10px;">
+                <img id="profile_image" src=""></img>
+                <br>
+                Insert Name
+                <br>
+                <span style="font-size: 10px; opacity: 0.5;">Insert Email</span>
+                
+                <br>
+                <br>
+                <br>
+                <div>
+                    <label id="label_chat" for="radio_chat">Chat <img src=""></label>
+                </div>
             </div>
-
+        </div>
+        <div id="right_pannel">
+            <div id="header">Chat A Lot</div>
+            <div id="container" style="display: flex;">
+                <div id="inner_left_pannel"></div>
+                <input type="radio" id="radio_chat" name="myradio" style="display: none;">
+                <div id="inner_right_pannel"></div>
+            </div>
         </div>
     </div>
 
-    <div id="right_pannel">
-        <div id="header"></div>
-        <div id="container" style="display: flex;"></div>
-
-        <div id="inner_left_pannel"></div>
-
-        <input type="radio" id="radio_chat" name="myradio" style="display: none;">
-        <input type="radio" id="radio_contacts" name="myradio" style="display: none;">
-        <input type="radio" id="radio_settings" name="myradio" style="display: none;">
-
-        <div id="inner_right_pannel"></div>
-    </div>
-
-</div>
 </body>
 </html>
-
-
-<script type="text/javascript">
-
-var  CURRENT_CHAT_USER = "";
-
-function get_chats(e) {
-
-    get_data({}, "chats");
-}
-    
-function start_chat(e){
-
-    var userid = e.target.getAttribute("userid");
-    if(e.target.id == ""){
-        userid = e.target.parentNode.getAttribute("userid");
-    } 
-    CURRENT_CHAT_USER = userid;
-    
-    var radio_chat = _("radio_chat");
-    radio_chat.checked = true;
-    get_data({userid:CURRENT_CHAT_USER}, "chats");
-}
-    
-</script>

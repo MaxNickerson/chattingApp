@@ -1,74 +1,81 @@
-@font-face {
-    font-family: headFont;
-    src: url(ui/fonts/Summer-Vibes-OTF.otf);
-}
+#wrapper{
 
-#wrapper {
-    max-width: 900px;
-    min-height: 500px;
-    margin: auto;
-    color: white;
-    font-size: 13px;
-}
+        max-width:900px;
+        min-height: 500px;
+        display: flex;
+        margin: auto;
+        color: white;
+        font-size: 13px;
+        text-align: center;
+    }
+    
 
-#left_pannel {
-    min-height: 400px;
-    background-color: #27344b;
-    flex: 1;
-    text-align: center;
-}
+    #left_pannel{
 
-#profile_img {
-    width: 50%;
-    border: solid thin white;
-    border-radius: 50%;
-    margin: 10px;
-}
+        min-height: 500px;
+        background-color: rgb(20, 20, 83);
+        flex: 1;
+    }
 
-#left_pannel label {
-    width: 100%;
-    height: 10px;
-    display: block;
-    background-color: #4045b6;
-    border-bottom: solid thin #ffffff55;
-    cursor: pointer;
-    padding: 5px;
-    transition: all 1s ease; 
-}
+    #profile_image{
 
-#left_pannel label:hover {
-    background-color: #778593;
-}
+        width: 50%;
+        border: solid thin white;
+        border-radius: 50%;
+        margin: 10px;
+        text-align: center;
+    }
 
-#left_pannel label img {
-    float: right;
-    width: 25px;
-}
+    #left_pannel label{
 
-#right_pannel {
-    min-height: 400px;
-    flex: 4;
-    text-align: center;
-}
+        width: 100%;
+        height: 20px;
+        display: block;
+        background-color: slategray;
+        border-bottom: solid thin #ffffff55;
+        cursor: pointer;
+        padding: 5px;
+        transform: all 1s ease;
+    }
 
-#header {
-    background-color: #485b6c;
-    height: 70px;
-    font-size: 40px;
-    text-align: center; 
-    font-family: headFont;
-}
+    #left_pannel label:hover{
 
-#inner_left_pannel {
-    background-color: #383e48;
-    flex: 1;
-    min-height: 430px;
-    transition: all 2s ease;
-}
+        background-color: rgb(137, 157, 177);
+    }
 
-#inner_right_pannel {
-    background-color: #f2f7f8;
-    flex: 2;
-    min-height: 1;
-    transition: all 2s ease;
-}
+    #left_pannel label img{
+
+        float: right;
+        width: 25px;
+    }
+
+    #right_pannel{
+
+        min-height: 500px;
+        flex: 4;
+        text-align: center;
+    }
+
+    #header{
+
+        background-color: #485b6c;
+        height: 70px;
+        font-size: 40px;
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    #inner_left_pannel{
+
+        background-color: slategray;
+        flex: 1;
+        min-height: 430px;
+    }
+
+    #inner_right_pannel{
+
+        background-color: lightgray;
+        flex: 2;
+        min-height: 430px;
+        transition: all 2s ease;
+    }
