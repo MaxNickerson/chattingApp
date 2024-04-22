@@ -4,8 +4,8 @@ const serviceAccount = require('../database-chatting-app-dc0895893908.json');  /
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
-  
 });
+
 
 
 const db = admin.firestore();

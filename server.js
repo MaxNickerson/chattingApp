@@ -6,6 +6,8 @@ const socketio = require('socket.io');
 const { db } = require('./config/firebaseConfig');
 const Message = require('./models/Message');
 
+console.log(process.env)
+
 
 const app = express();
 const server = http.createServer(app);
@@ -14,6 +16,7 @@ const io = socketio(server);
 app.use(express.json());
 
 app.use(express.static('public'));  
+
 
 
 app.get('/', (req, res) => {
