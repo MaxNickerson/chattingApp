@@ -1,0 +1,5 @@
+node_modules
+npm-debug.log
+extra/
+database-chatting-app-dc08958939.json  # The actual filename of your Firebase credentials
+.DS_Store
