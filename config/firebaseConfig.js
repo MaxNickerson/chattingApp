@@ -1,12 +1,12 @@
-// /config/firebaseConfig.js
 const admin = require('firebase-admin');
-const serviceAccount = require('../database-chatting-app-dc0895893908.json');  // Adjust the path as necessary
+
+// Path to your Firebase service account key file
+// Make sure to replace 'path-to-your-service-account-key.json' with the correct path
+const serviceAccount = require('../database-chatting-app-dc0895893908.json');
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
-
-
 
 const db = admin.firestore();
 
