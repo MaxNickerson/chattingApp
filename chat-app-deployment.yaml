@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-app
+  template:
+    metadata:
+      labels:
+        app: chat-app
+    spec:
+      containers:
+      - name: chat-app
+        image: gcr.io/database-chatting-app/chat-app
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: firebase-creds
+          mountPath: "/usr/src/app/firebase-credentials.json"
+          subPath: firebase-credentials.json
+          readOnly: true
+      volumes:
+      - name: firebase-creds
+        secret:
+          secretName: firebase-secret
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-app-service
+spec:
+  selector:
+    app: chat-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
