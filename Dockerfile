@@ -5,7 +5,7 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package*.json .
 
 # Install dependencies
 RUN npm install --only=production
@@ -15,7 +15,7 @@ COPY . .
 
 # Copy your Firebase credentials JSON, but make sure it's ignored by .dockerignore if it's sensitive
 # COPY path-to-your-firebase-credentials.json /usr/src/app/path-within-container
-COPY ./database-chatting-app-dc0895893908.json /usr/src/app/path-in-container/database-chatting-app-dc0895893908.json
+# COPY ./database-chatting-app-a928494373d5.json .
 
 
 # Expose the port your app runs on

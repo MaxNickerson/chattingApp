@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  app:
+    image: chat-app
+    ports:
+      - 5000:5000
+    volumes:
+      - ./database-chatting-app-a928494373d5.json:/usr/src/app/database-chatting-app-a928494373d5.json:ro

@@ -3,7 +3,6 @@ const path = require('path');
 const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
-const { db } = require('./config/firebaseConfig');
 const Message = require('./models/Message');
 
 console.log(process.env)
