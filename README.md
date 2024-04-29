@@ -50,7 +50,7 @@ Follow these steps to get your development environment running:
 
 4. Replace every instance of database-chatting-app-a928494373d5.json with your respective service account json file
 
-5. Build the application using docker and send it to the cloud
+5. Build the application using docker and send it to the cloud:
    docker build -t your-app .
    docker tag your-app gcr.io/your-google-cloud-project/your-app
    docker push gcr.io/your-google-cloud-project/your-app
