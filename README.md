@@ -42,18 +42,18 @@ Follow these steps to get your development environment running:
 
 3. Set up Firebase Admin SDK:
    Obtain your Firebase service account key file from the Firebase console:
-      Go to Firebase Console
-      Select your project
-      Navigate to Project settings > Service accounts
-      Click Generate new private key and save the file as firebase-admin-key.json in your project directory
-   Ensure your .dockerignore file excludes the firebase-admin-key.json to avoid pushing your credentials to the repository.
+      Go to Firebase Console <br />
+      Select your project <br />
+      Navigate to Project settings > Service accounts <br />
+      Click Generate new private key and save the file as firebase-admin-key.json in your project directory <br />
+   Ensure your .dockerignore file excludes the firebase-admin-key.json to avoid pushing your credentials to the repository. <br />
 
-4. Replace every instance of database-chatting-app-a928494373d5.json with your respective service account json file
+4. Replace every instance of database-chatting-app-a928494373d5.json with your respective service account json file <br />
 
-5. Build the application using docker and send it to the cloud:
-   docker build -t your-app .
-   docker tag your-app gcr.io/your-google-cloud-project/your-app
-   docker push gcr.io/your-google-cloud-project/your-app
+5. Build the application using docker and send it to the cloud: <br />
+   docker build -t your-app . <br />
+   docker tag your-app gcr.io/your-google-cloud-project/your-app <br />
+   docker push gcr.io/your-google-cloud-project/your-app <br />
 
 
 
